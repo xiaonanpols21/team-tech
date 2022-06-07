@@ -27,6 +27,8 @@ async function main() {
   }
 }
 
+main();
+
 
 const kdramaSchema = new mongoose.Schema({
   name: String,
@@ -62,7 +64,7 @@ async function connectDB() {
 
 // Site laten werken
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 4000;
 
 // Dit heb je nodig om data te posten
 app.use(express.json());
@@ -73,7 +75,7 @@ app.use(express.static("public"));
 app.set("view engine", "ejs");
 
 // Pages
-/*
+
 app.get("/", async (req, res) => {
   const users = await db.collection("users").find({},{}).toArray();
   const tmdb = await db.collection("tmdb").find({},{}).toArray();
@@ -155,7 +157,7 @@ app.use( async (req, res) => {
     tmdb
   });
 });
-*/
+
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
