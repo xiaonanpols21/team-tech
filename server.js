@@ -8,32 +8,39 @@ const express = require("express");
 const dotenv = require("dotenv").config();
 
 const mongoose = require('mongoose');
-mongoose.connect("localhost:3000");
+//mongoose.connect("localhost:3000");
 
 /*
+main().catch(err => console.log(err));
+async function main() {
+  await mongoose.connect('mongodb://localhost:3000');
+}
+*/
+
 async function main() {
   try {
     await mongoose.connect(process.env.mongoBeauty);
     console.log("success");
   } catch(error) {
+    console.log("error");
     throw error
   }
 }
-*/
 
-const kdramaSchema = new Schema({
+
+const kdramaSchema = new mongoose.Schema({
   name: String,
   slug: String,
   genres: Array,
   overview: String
-});
+}, {collection: "kdrama-data"});
 
 const kdramaData = mongoose.model("kdramaData", kdramaSchema);
 
 
-/*
 const { MongoClient } = require("mongodb");
 const { ObjectId } =   require("mongodb");
+/*
 let db = null;
 
 // Make connection with Mongo
