@@ -5,17 +5,57 @@
 
 // NPM packages
 const express = require("express");
-
 const dotenv = require("dotenv").config();
 
+const mongoose = require('mongoose');
+mongoose.connect("localhost:3000");
+
+/*
+async function main() {
+  try {
+    await mongoose.connect(process.env.mongoBeauty);
+    console.log("success");
+  } catch(error) {
+    throw error
+  }
+}
+*/
+
+const kdramaSchema = new Schema({
+  name: String,
+  slug: String,
+  genres: Array,
+  overview: String
+});
+
+const kdramaData = mongoose.model("kdramaData", kdramaSchema);
+
+
+/*
 const { MongoClient } = require("mongodb");
 const { ObjectId } =   require("mongodb");
+let db = null;
+
+// Make connection with Mongo
+async function connectDB() {
+  const uri = process.env.DB_URI;
+  const client = new MongoClient(uri, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+  });
+  try {
+      await client.connect();
+      db = client.db(process.env.DB_NAME);
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+}
+*/
 
 // Site laten werken
 const app = express();
 const port = process.env.PORT || 3000;
-
-let db = null;
 
 // Dit heb je nodig om data te posten
 app.use(express.json());
@@ -26,6 +66,7 @@ app.use(express.static("public"));
 app.set("view engine", "ejs");
 
 // Pages
+/*
 app.get("/", async (req, res) => {
   const users = await db.collection("users").find({},{}).toArray();
   const tmdb = await db.collection("tmdb").find({},{}).toArray();
@@ -107,25 +148,11 @@ app.use( async (req, res) => {
     tmdb
   });
 });
-
-// Make connection with Mongo
-async function connectDB() {
-  const uri = process.env.DB_URI;
-  const client = new MongoClient(uri, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-  });
-  try {
-      await client.connect();
-      db = client.db(process.env.DB_NAME);
-  } catch (error) {
-    console.error(error);
-    throw error;
-  }
-}
+*/
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
-  connectDB()
-  .then(console.log("We have a connection to mongo"));
+
+  // connectDB()
+  // .then(console.log("We have a connection to mongo"));
 });
