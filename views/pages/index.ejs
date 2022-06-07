@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../partials/head'); %>
+  <body class="body-index">
+    <%- include('../partials/header'); %>
+    <main class="main-index">
+      <h1>Find your K-drama Seoulmate</h1>
+      <p>Add your favorite Kdrama's in your list and check later which one you should watch!</p>
+
+      <section class="ch-member">
+        <h2 class="visually-hidden">Choose profile</h2>
+        <button>Choose profile</button>
+        <div class="ch-content">
+          <% users.forEach(user => { %>
+          <a href="/mylist/<%= user._id %>/<%= user.slug %>">
+          <img src="/<%= user.img %>" alt="<%= user.name %>" /><%= user.name %></a>
+          <% }) %>
+        </div>
+      </section>
+    </main>
+    <img class="index-logo" src="img/logo.svg" alt="Logo" />
+
+    <script src="js/visibility.js"></script>
+    <script src="js/detail.js"></script>
+  </body>
+</html>

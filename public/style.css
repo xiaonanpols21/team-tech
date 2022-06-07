@@ -1,0 +1,820 @@
+/* Basic */
+* {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+:root {
+    --font-stack: 'Poppins', sans-serif;
+
+    --purple: #5f5ccf;
+    --grey: #9ba9b4;
+    --pink: #e850aa;
+    --white: #ffffff;
+    --black: #000000;
+    --bg-color: #1a1a1a;
+
+    --purple-active: #3b4161;
+
+    --dropdown-hover: #f1f1f1;
+
+    --gradient-black-transparent: linear-gradient(0deg, rgba(0, 0, 0, 0.6) 0%, rgba(255, 255, 255, 0) 50%);
+    --gradient-transparent-black: linear-gradient(180deg, rgba(0, 0, 0, 0.6) 0%, rgba(255, 255, 255, 0) 50%);
+}
+
+body {
+    font-family: var(--font-stack);
+    background-color: var(--bg-color);
+    color: var(--white);
+}
+
+a {
+    text-decoration: none;
+}
+
+.visually-hidden {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+}
+
+/* Partials */
+/* Header.ejs */
+header {
+    position: relative;
+    height: 25em;
+    padding: 3.125em;
+    border-radius: 0em 0em 3.125em 3.125em;
+    background-size: cover;
+    background-position: center;
+}
+
+header div {
+    position: absolute;
+    bottom: 1.25em;
+    left: 1.875em;
+    right: 1.875em;
+}
+
+.header-img {
+    position: absolute;
+    margin: -3.125em;
+    width: 100%;
+    height: 400px;
+    background-size: cover;
+    object-fit: cover;
+    border-radius: 0em 0em 3.125em 3.125em;
+}
+
+.overlay,
+.overlay-detail {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-image: var(--gradient-black-transparent);
+    border-radius: 0em 0em 3.125em 3.125em;
+}
+
+header h2,
+.main-index h1,
+.main-detail h2 {
+    font-size: 1.625em;
+    line-height: 1.9375em;
+}
+
+header p {
+    font-size: 0.875em;
+    line-height: 1.4375em;
+}
+
+header ul,
+.main-detail ul {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+header ul li,
+.main-detail ul li {
+    margin-right: 0.625em;
+    list-style: none;
+}
+
+header ul li::after,
+.main-detail ul li::after {
+    content: ",";
+}
+
+/* Logo.ejs */
+.logo {
+    display: flex;
+    margin: 1.25em auto auto auto;
+    height: 3.125em;
+}
+
+/* Index.ejs */
+/* Choose member */
+.ch-member {
+    position: relative;
+}
+
+.ch-member button {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    position: relative;
+    background: url(img/dorpdown-arrow.svg) no-repeat 90% center;
+    background-size: 0.625em 0.625em;
+    color: var(--white);
+}
+
+.ch-content {
+    position: absolute;
+    display: none;
+    width: 100%;
+    background-color: var(--white);
+    border-radius: 1.25em;
+    z-index: 1;
+}
+
+.ch-content a {
+    display: flex;
+    align-items: center;
+    padding: 0.625em 1.25em;
+    width: 100%;
+    font-size: 1.125em;
+    color: var(--black);
+}
+
+.ch-content a:hover {
+    background-color: var(--dropdown-hover);
+    border-radius: 1.25em;
+    width: 100%;
+}
+
+.ch-member:hover .ch-content {
+    display: block;
+}
+
+.ch-member button:hover {
+    background-color: var(--purple-active);
+}
+
+.main-index .ch-content img {
+    height: 3.125em;
+    margin-right: 1.25em;
+    border-radius: 50%;
+}
+
+/* Main */
+.main-index {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25em;
+    padding: 1.25em;
+    margin: 3.125em 0em;
+}
+
+.main-index h1 {
+    font-size: 1.625em;
+    line-height: 1.5625em;
+}
+
+.main-index p {
+    font-size: 1.125em;
+    line-height: 1.875em;
+}
+
+.ch-member button,
+.ch-member select,
+.main-match a,
+.main-404 a {
+    font-family: var(--font-stack);
+    display: block;
+    padding: 1.5625em 1.875em;
+    width: 100%;
+    border-radius: 1.25em;
+    background-color: var(--purple);
+    border: 1px solid transparent;
+    text-align: center;
+    font-size: 1.125em;
+    line-height: 1.875em;
+    color: var(--white);
+    font-weight: bold;
+    transition: .4s;
+    cursor: pointer;
+}
+
+fieldset:first-of-type label:hover,
+.slider-btns button:hover {
+    border: 1px solid var(--purple);
+    background: transparent;
+}
+
+/* Als ik active boven focus doe, doet hij focus voor active state */
+.ch-member button:focus {
+    background-color: var(--pink);
+}
+
+fieldset:first-of-type label:active,
+.slider-btns button:active {
+    background-color: var(--purple-active);
+    border: 1px solid var(--purple-active);
+}
+
+.main-index img {
+    height: 6.25em;
+}
+
+/* Match-result.ejs */
+.main-match,
+.main-404 {
+    padding: 1.25em;
+    margin-top: calc(3.125em - 1.25em);
+}
+
+.main-match h1,
+.main-detail h1 {
+    font-size: 2.125em;
+    line-height: 1.875em;
+}
+
+.main-match p,
+.main-404 p {
+    margin: 1.25em 0px;
+    font-size: 1.125em;
+    line-height: 1.875em;
+}
+
+/* Profile.ejs */
+.body-profile,
+.body-mylist {
+    padding: 2.5em 1.25em;
+}
+
+.section-profile {
+    display: grid;
+    grid-template-columns: 6.25em 1fr;
+    gap: 0px 1.25em;
+    margin-top: 0.625em;
+}
+
+.section-profile h2 {
+    display: flex;
+    align-items: center;
+    font-size: 1.125em;
+    line-height: 1.875em;
+}
+
+.section-profile img {
+    order: -1;
+    width: 6.25em;
+    height: 6.25em;
+    border-radius: 50%;
+}
+
+.section-profile section {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.main-profile {
+    margin: 3.125em 0px;
+}
+
+.main-profile section {
+    display: flex;
+    flex-direction: row;
+    gap: 1.25em;
+    overflow: auto;
+    margin: 1.25em -1.25em 0px 0px;
+    padding-right: 1.25em;
+    scroll-snap-type: x mandatory;
+}
+
+.main-profile section article {
+    scroll-snap-align: center;
+}
+
+.main-profile .poster-img {
+    width: 8.75em;
+}
+
+.main-profile h2 {
+    font-size: 1.125em;
+}
+
+/* 404.ejs */
+.body-404 {
+    display: flex;
+    flex-direction: column;
+}
+
+.body-404 > img:first-of-type {
+    display: flex;
+    order: -1;
+    height: 3.125em;
+    margin: 1.25em auto auto auto;
+}
+
+.main-404 h1 {
+    position: relative;
+    font-size: 2.125em;
+    text-align: center;
+}
+
+.main-404 h1:after {
+    position: absolute;
+    content: "";
+    width: 320px;
+    height: 180px;
+    border-radius: 0.625em;
+    background-image: url(/img/404-gif.gif);
+    background-size: contain;
+    background-repeat: no-repeat;
+    top: calc(1.25em + 1.25em);
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.main-404 p {
+    margin-top: calc(180px + 1.25em + 50px);
+}
+/* Maten die px zijn blijven zo vanwege correcte afmetingen */
+
+/* Detail.ejs */
+.header-detail {
+    position: relative;
+    height: 25em;
+    padding: 0px;
+    border-radius: 0px;
+    background-image: none;
+}
+
+.header-detail nav a:after {
+    position: absolute;
+    left: 1.25em;
+    top: 3.125em;
+    width: 1.0625em;
+    height: 1.875em;
+    content: "";
+    background-image: url(img/arrow-left.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.detail-img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+}
+
+.overlay-detail {
+    background-image: var(--gradient-transparent-black);
+}
+
+.main-detail {
+    position: relative;
+    padding: 2.5em 1.25em;
+    margin-top: -2.5em;
+    border-radius: 3.125em 3.125em 0px 0px;
+    background-color: var(--bg-color);
+}
+
+.main-detail h1,
+.main-detail h2 {
+    margin-bottom: 0.3125em;
+}
+
+.main-detail h2 {
+    margin-top: 1.25em;
+}
+
+.main-detail p {
+    font-size: 1em;
+    line-height: 1.75em;
+}
+
+.main-detail p:first-of-type {
+    margin-bottom: 3.125em;
+}
+
+/* Mylist.ejs */
+.nav-mylist a {
+    margin-left: calc(0.53125em + 1.5625em);
+    color: var(--white);
+    font-size: 1.5em;
+    line-height: 2.5em;
+    font-weight: bold;
+}
+
+.nav-mylist a:before {
+    position: absolute;
+    left: 1.25em;
+    top: 2.5em;
+    width: 0.53125em;
+    height: 0.9375em;
+    content: "";
+    background-image: url(img/arrow-left.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    margin-top: 0.625em;
+    margin-left: auto;
+    width: fit-content;
+    font-size: 1em;
+    color: var(--white);
+}
+
+.user-profile img {
+    height: 3.125em;
+    margin-right: 1.25em;
+    border-radius: 50%;
+}
+
+/* Main */
+.main-mylist {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5em 1.25em;
+    margin-top: 2.5em;
+}
+
+.card {
+    transform: translateY(100px);
+    transition: 150ms;
+}
+
+.card.card-opacity {
+    opacity: 0;
+}
+
+.card.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.poster-img {
+    width: 100%;
+    border-radius: 1.25em;
+}
+
+.main-mylist h3,
+.main-profile article h3 {
+    margin-top: 0.3125em;
+    font-weight: 600;
+    font-size: 1em;
+    line-height: 1.75em;
+}
+
+.main-mylist a,
+.main-profile article a {
+    position: relative;
+    display: block;
+}
+
+.main-mylist form,
+.main-profile article form {
+    position: absolute;
+    top: 1.25em;
+    right: 1.25em;
+}
+
+.main-mylist button,
+.main-profile article button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: .4s;
+}
+
+/* Progressive enhancement */
+/* Mylist.ejs */
+.heart-add {
+    display: block;
+    background: url(img/heart-default.svg) center center no-repeat;
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 1.5625em;
+    width: 1.8125em;
+    transition: .4s;
+}
+
+.heart-add:hover {
+    background: url(img/heart-hover.svg) center center no-repeat;
+}
+
+.heart-add:active {
+    background: url(img/heart-active.svg) center center no-repeat;
+}
+
+.heart-added {
+    background: url(img/heart-focus.svg) center center no-repeat;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+/* Responsive */
+@media (min-width: 576px) {
+
+    /* Index.ejs */
+    .main-index,
+    /* form, */
+    .main-404,
+    .body-mylist,
+    .main-detail section,
+    .body-profile {
+        width: 31.25em;
+        /*500px*/
+        margin: 3.125em auto;
+    }
+
+    header div {
+        bottom: 3.125em;
+        left: 3.125em;
+        right: 3.125em;
+    }
+
+    /* Mylist.ejs */
+    .body-mylist {
+        position: relative;
+        padding: 0px;
+    }
+
+    .nav-mylist {
+        position: relative;
+    }
+
+    .nav-mylist a:before {
+        top: calc(1.5em / 2);
+        left: 0;
+    }
+
+    .heart-add {
+        height: 2.1875em;
+        width: 2.5em;
+    }
+
+    .body-profile {
+        padding: 0px;
+    }
+
+    /* Fonts style */
+    header h2,
+    .main-detail h1 {
+        font-size: 3.125em;
+        line-height: 1.25em;
+    }
+
+    header p,
+    .main-detail p:first-of-type {
+        font-size: 1.125em;
+        line-height: 1.875em;
+    }
+}
+
+@media (min-width: 992px) {
+
+    /* Fonts style */
+    .main-index h1,
+    .main-404 h1 {
+        font-size: 2.625em;
+    }
+
+    .main-index p,
+    .main-404 p,
+    .main-detail p,
+    .body-404,
+    .main-profile article h3 {
+        font-size: 1.25em;
+        line-height: 1.875em;
+    }
+
+    label,
+    .ch-content a,
+    .main-profile h2 {
+        font-size: 1.25em;
+    }
+
+    .main-match h1 {
+        font-size: 3.125em;
+    }
+
+    .main-match p {
+        font-size: 1.375em;
+        /*22px*/
+    }
+
+    .section-profile h2,
+    .nav-mylist a {
+        font-size: 1.625em;
+    }
+
+    .user-profile,
+    .main-mylist h3 {
+        font-size: 1.125em;
+        line-height: 1.875em;
+    }
+
+    .main-detail h2 {
+        font-size: 1.875em;
+    }
+
+    .main-404 p {
+        margin-top: calc(180px + 93px + 1.25em);
+    }
+
+}
+
+@media (max-width: 1200px) {
+
+    /* Index.ejs */
+    .index-logo {
+        display: none;
+    }
+
+    /* 404.ejs */
+    .body-404 header {
+        display: none;
+    }
+
+    /* Portfolio.ejs */
+    .body-profile .logo {
+        display: none;
+    }
+}
+
+@media (min-width: 1200px) {
+
+    body,
+    .body-mylist,
+    .body-profile {
+        padding: 3.125em 9.375em;
+    }
+
+    /* Index.ejs */
+    .body-index,
+    .body-404,
+    .body-kdrama-single {
+        display: grid;
+        grid-template-columns: 31.25em 1fr;
+        gap: 3.125em;
+        padding: 3.125em;
+        height: 100vh;
+    }
+
+    .body-index > img:first-of-type,
+    .body-404 > img:first-of-type {
+        position: absolute;
+        height: 6.25em;
+    }
+
+    .main-index .ch-content img {
+        position: relative;
+        height: 3.125em;
+    }
+
+    header {
+        grid-column-start: 2;
+        grid-column-end: 3;
+        border-radius: 2.5em;
+        height: 100%;
+    }
+
+    .header-img {
+        height: 100%;
+        border-radius: 3.125em;
+    }
+
+    .main-index {
+        position: relative;
+        grid-row-start: 1;
+        grid-row-end: 2;
+        margin: auto;
+        width: 100%;
+    }
+
+    .main-index a,
+    .main-match a,
+    .main-404 a {
+        width: fit-content;
+    }
+
+    /* 404.ejs */
+    .main-404 {
+        grid-row-start: 1;
+        grid-row-end: 2;
+        margin: auto;
+        padding: 0px;
+        width: 100%;
+    }
+
+    .main-404 h1 {
+        text-align: left;
+    }
+
+    .main-404 h1:after {
+        display: none;
+    }
+
+    .main-404 p {
+        margin-top: 1.25em;
+    }
+
+    .body-404 {
+        grid-template-columns: 25em 1fr;
+    }
+
+    /* Profile.ejs */
+    .section-profile {
+        grid-template-columns: 8.125em 1fr;
+        width: 100%;
+    }
+
+    .section-profile img {
+        width: 8.125em;
+        height: 8.125em;
+    }
+
+    /* Mylist.ejs */
+    .main-mylist {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+
+    .body-mylist,
+    .body-profile {
+        width: 100%;
+        margin: 0px;
+    }
+
+    .user-profile img {
+        height: 4.375em;
+    }
+
+    .main-mylist form {
+        top: 1.875em;
+        right: 1.875em;
+    }
+
+    .heart-add {
+        height: 2.5625em;
+        width: 2.9375em;
+    }
+
+    /* Profile */
+    .main-profile .poster-img {
+        width: 12.5em;
+    }
+
+    /* Detail.ejs */
+    .body-kdrama-single {
+        grid-template-columns: 31.25em 31.25em;
+        justify-content: center;
+    }
+
+    .main-detail {
+        grid-row-start: 1;
+        grid-row-end: 2;
+    }
+
+    .main-detail section {
+        width: 100%;
+    }
+
+    .header-detail {
+        height: 100%;
+    }
+
+    .detail-img {
+        height: 100%;
+        border-radius: 3.125em;
+    }
+
+    .overlay-detail {
+        display: none;
+    }
+
+    .header-detail nav a:after {
+        display: none;
+    }
+
+    /* Partials */
+    .logo {
+        height: 4.375em;
+        margin: 0px 0px 0px auto;
+    }
+}

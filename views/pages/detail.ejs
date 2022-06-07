@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../partials/head'); %>
+  <body class="body-kdrama-single">
+    <header class="header-detail">
+      <div class="overlay-detail"></div>
+      <img class="detail-img" src="/img/404-cover.jpg" alt="<%= tmdb.name %>" />
+      <nav>
+        <a href="/mylist/<%= user._id %>/<%= user.slug %>"></a>
+      </nav>
+    </header>
+    <main class="main-detail">
+      <section>
+        <h1><%= tmdb.name %></h1>
+        <ul>
+          <% tmdb.genres.forEach(kdrama => { %>
+          <li><%= kdrama.charAt(0).toUpperCase() + kdrama.slice(1)%></li>
+          <%}); %>
+        </ul>
+
+        <h2>About</h2>
+        <p><%= tmdb.overview %></p>
+      </section>
+    </main>
+    <script src="/js/detail.js"></script>
+    <script src="/js/visibility.js"></script>
+  </body>
+</html>

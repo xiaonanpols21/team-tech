@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../partials/head'); %>
+  <body class="body-mylist">
+    <nav class="nav-mylist">
+      <a href="/">Choose K-drama</a>
+    </nav>
+    <a class="user-profile" href="/profile/<%= user._id %>/<%= user.slug %>">
+      <img src="/<%= user.img %>" alt="<%= user.name %>" /><%= user.name %>
+    </a>
+
+    <main class="main-mylist">
+      <h1 class="visually-hidden">List of kdramas</h1>
+
+      <% tmdb.forEach(kdrama => { %>
+      <article class="card">
+        <a href="/kdrama/<%= kdrama._id %>/<%= kdrama.slug%>/<%= user._id %>/<%= user.slug %>">
+          <img class="poster-img" src="/img/404-cover.jpg" alt="<%= kdrama.name %>"/>
+          <form action="/mylist/<%= user._id %>/<%= user.slug %>" method="post">
+            <button>
+              <% if(user.mylist.includes(String(kdrama._id))) {%>
+              <span class="heart-add heart-added"></span>
+              <% } else { %>
+              <span class="heart-add"></span>
+              <% } %>
+            </button>
+            <input type="hidden" name="kdramaId" value="<%=kdrama._id%>" />
+          </form>
+        </a>
+        <h3><%= kdrama.name %></h3>
+      </article>
+      <% }) %>
+    </main>
+
+    <script src="/js/visibility.js"></script>
+    <script src="/js/mylist.js"></script>
+  </body>
+</html>

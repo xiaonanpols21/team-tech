@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../partials/head'); %>
+  <body class="body-profile">
+    <%- include('../partials/logo'); %>
+    <nav class="nav-mylist">
+      <a href="/mylist/<%= user._id %>/<%= user.slug %>">Profile</a>
+    </nav>
+    <section class="section-profile">
+      <h1 class="visually-hidden">User profile</h1>
+      <h2>@<%= user.name %></h2>
+      <img src="/<%= user.img %>" alt="<%= user.name %>" />
+    </section>
+    <main class="main-profile">
+      <h2>My list</h2>
+      <section>
+        <h3 class="visually-hidden">Kdramas</h3>
+        <% userKdrama.forEach(fav => { %>
+          <article>
+            <a href="">
+              <h2 class="visually-hidden">Drama poster</h2>
+              <img class="poster-img" src="/img/404-cover.jpg" alt="<%= fav.name %>" />
+              <form action="/profile/<%= user._id %>/<%= user.slug %>" method="post">
+                <button>
+                    <slug class="heart-add heart-added"></slug>
+                </button>
+                <input type="hidden" name="kdramaId" value="<%=fav._id%>" />
+              </form>
+            </a>
+            <h3><%= fav.name %></h3>
+          </article>
+        <% }) %>
+      </section>
+    </main>
+    <script src="/js/visibility.js"></script> 
+    <script src="/js/profile.js"></script> 
+  </body>
+</html>
