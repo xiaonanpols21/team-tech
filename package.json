@@ -26,7 +26,8 @@
     "ejs": "^3.1.7",
     "eslint-config-p5js": "^1.1.0",
     "express": "^4.17.3",
-    "mongodb": "^4.6.0"
+    "mongodb": "^4.6.0",
+    "mongoose": "^6.3.6"
   },
   "devDependencies": {
     "eslint": "^8.15.0",
