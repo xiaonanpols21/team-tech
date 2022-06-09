@@ -8,14 +8,6 @@ const express = require("express");
 const dotenv = require("dotenv").config();
 
 const mongoose = require('mongoose');
-//mongoose.connect("localhost:3000");
-
-/*
-main().catch(err => console.log(err));
-async function main() {
-  await mongoose.connect('mongodb://localhost:3000');
-}
-*/
 
 async function main() {
   try {
@@ -26,9 +18,7 @@ async function main() {
     throw error
   }
 }
-
 main();
-
 
 const kdramaSchema = new mongoose.Schema({
   name: String,
@@ -41,25 +31,6 @@ const kdramaData = mongoose.model("kdramaData", kdramaSchema);
 
 const { MongoClient } = require("mongodb");
 const { ObjectId } =   require("mongodb");
-/*
-let db = null;
-
-// Make connection with Mongo
-async function connectDB() {
-  const uri = process.env.DB_URI;
-  const client = new MongoClient(uri, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-  });
-  try {
-      await client.connect();
-      db = client.db(process.env.DB_NAME);
-  } catch (error) {
-    console.error(error);
-    throw error;
-  }
-}
-*/
 
 // Site laten werken
 const app = express();
@@ -160,7 +131,4 @@ app.use( async (req, res) => {
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
-
-  // connectDB()
-  // .then(console.log("We have a connection to mongo"));
 });
