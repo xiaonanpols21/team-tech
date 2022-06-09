@@ -1,6 +1,6 @@
 # Block-Tech
 
-Aanpassing van Menno
+Aanpassing van Menno op postDB
 
 ![cover](https://github.com/xiaonanpols21/block-tech-v2/blob/main/public/img-wiki/cover.jpg)
 
